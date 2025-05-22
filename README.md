@@ -32,20 +32,14 @@ cd Sistema-Estoque
 
 ### ▶️ Pré-requisitos
 
-- Python 3.10 ou superior
-- `pip`
-- `venv` (ambiente virtual)
+- Python
+- Baixa o pip django se não tiver o django nao roda (pip install django)
 
 ### 📦 Instalar dependências
 
 ```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate     # Windows
-# ou
-source venv/bin/activate  # Linux/macOS
-
-pip install -r requirements.txt
+pip install djangorestframework
+pip install django-cors-headers
 ```
 
 > Se não existir o arquivo `requirements.txt`, gere com:
@@ -54,18 +48,11 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 ```
 
-### 🔄 Aplicar migrações
-
-```bash
-python manage.py migrate
-```
-
 ### 🚀 Rodar o servidor Django
 
 ```bash
 python manage.py runserver
 ```
-
 ---
 
 ## 🎨 Front-end (React)
