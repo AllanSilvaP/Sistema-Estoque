@@ -42,12 +42,6 @@ pip install djangorestframework
 pip install django-cors-headers
 ```
 
-> Se não existir o arquivo `requirements.txt`, gere com:
-
-```bash
-pip freeze > requirements.txt
-```
-
 ### 🚀 Rodar o servidor Django
 
 ```bash
