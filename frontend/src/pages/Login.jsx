@@ -9,7 +9,7 @@ export default function Login() {
     return (
         <div className='bg-[#F7F5F2] min-h-screen'>
             <Navbar/>
-            <div className='flex flex-col items-center justify-center py-12 pt-[80px]'>
+            <div className='flex flex-col items-center justify-center min-h-screen'>
                 <h2 className='text-3xl font-bold mb-6 text-[#12714D]'>Login</h2>
                 <div className='w-full max-w-md bg-[#12714D] p-8 rounded-xl shadow-md'>
                     <form>
