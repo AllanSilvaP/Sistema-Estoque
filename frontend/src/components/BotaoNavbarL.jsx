@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function BotaoNavbarL({ nome }) {
+export default function BotaoNavbarL({ nome, className  = '', corHover="#e6e4e2"}) {
     return (
         <button
             type="button"
-            className="w-48 bg-[#F7F5F2] text-black font-semibold py-2 rounded-lg hover:bg-[#e6e4e2] hover:cursor-pointer transition-colors shadow-sm"
+            className={`w-48 font-semibold py-2 rounded-lg hover:bg-[${corHover}] hover:cursor-pointer transition-colors shadow-sm ${className}`}
         >
             {nome}
         </button>

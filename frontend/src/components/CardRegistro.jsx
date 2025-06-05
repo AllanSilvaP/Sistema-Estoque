@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function LinhaProduto() {
+export default function CardRegistro({className=''}) {
     return (
-        <tr className="hover:bg-gray-50">
+        <tr className={`hover:bg-gray-50 ${className}`}>
             <td className="border px-4 py-2">Dipirona Sódica</td>
             <td className="border px-4 py-2">Analgésico e antipirético</td>
             <td className="border px-4 py-2">Neo Química</td>

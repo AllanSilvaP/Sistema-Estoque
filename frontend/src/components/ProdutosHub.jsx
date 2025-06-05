@@ -10,16 +10,16 @@ export default function ProdutosHub() {
             <InputCampo placeholder="🔍 Pesquise aqui!" className="w-full max-w-md mb-6" />
 
             <div className="flex space-x-3">
-                <BotaoNavbarL nome="Adicionar Registro" />
-                <BotaoNavbarL nome="Em Estoque" />
-                <BotaoNavbarL nome="Entrada" />
-                <BotaoNavbarL nome="Saída" />
-                <BotaoNavbarL nome="Filtrar" />
+                <BotaoNavbarL nome="Adicionar Registro" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966" />
+                <BotaoNavbarL nome="Em Estoque" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966"/>
+                <BotaoNavbarL nome="Entrada" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966"/>
+                <BotaoNavbarL nome="Saída" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966"/>
+                <BotaoNavbarL nome="Filtrar" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966"/>
             </div>
 
             <div className="overflow-x-auto">
-                <table className="min-w-full border border-gray-300 text-sm mt-10">
-                    <thead className="">
+                <table className="min-w-full border border-gray-300 text-sm mt-5">
+                    <thead className="bg-[#12714D] text-[#F1F1F1]">
                         <tr>
                             <th className="border px-4 py-2">Nome</th>
                             <th className="border px-4 py-2">Descrição</th>
@@ -34,6 +34,14 @@ export default function ProdutosHub() {
                     </thead>
 
                     <tbody>
+                        <CardRegistro/>
+                        <CardRegistro/>
+                        <CardRegistro/>
+                        <CardRegistro/>
+                        <CardRegistro/>
+                        <CardRegistro/>
+                        <CardRegistro/>
+                        <CardRegistro/>
                         <CardRegistro/>
                     </tbody>
                 </table>
