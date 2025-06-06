@@ -1,10 +1,25 @@
 import React, { useState } from 'react'
 import InputCampo from '../components/InputCampo'
 import Navbar from '../components/Navbar'
+import { handleLogin } from '../services/apiUsuario'
 
 export default function Login() {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+
+    const handleLogin = async (e) => {
+        e.preventDefault()
+
+        try {
+            const data = await handleLogin(email, senha)
+            localStorage.setItem("acess_token", data.acess)
+            localStorage.setItem('refresh_token', data.refresh)
+            alert('Login feito com ssucesso')
+        } catch (error) {
+            console.error(error)
+            alert("Login Falhou!")
+        }
+    }
 
     return (
         <div className='bg-[#F7F5F2] min-h-screen'>
