@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:8000/api"
 
-export const handleLogin = async (email, senha) => {
+export const login = async (email, senha) => {
     const response = await fetch(`${API_URL}/usuarios/login/`, {
         method: "POST",
         headers: {
