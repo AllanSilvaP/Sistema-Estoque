@@ -3,7 +3,6 @@ from usuarios.models import Usuario
 from estoque.models import LocalEstocagem
 # Create your models here.
 
-
 class Requisicao(models.Model):
     solicitante = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     local_origem = models.ForeignKey(LocalEstocagem, on_delete=models.PROTECT, related_name='requisicoes_origem')

@@ -1,17 +1,23 @@
 import React from "react";
+import BotaoTabela from "./BotaoTabela";
 
-export default function CardRegistro({className=''}) {
+export default function CardRegistro({ dados = [], className = "" }) {
     return (
         <tr className={`hover:bg-gray-50 ${className}`}>
-            <td className="border px-4 py-2">Dipirona Sódica</td>
-            <td className="border px-4 py-2">Analgésico e antipirético</td>
-            <td className="border px-4 py-2">Neo Química</td>
-            <td className="border px-4 py-2">Medicamento</td>
-            <td className="border px-4 py-2">15°C a 30°C</td>
-            <td className="border px-4 py-2">12/03/2024</td>
-            <td className="border px-4 py-2">120</td>
-            <td className="border px-4 py-2">10/12/2025</td>
-            <td className="border px-4 py-2">Farmácia Central</td>
+            {/* Células de dados */}
+            {dados.map((item, index) => (
+                <td key={index} className="border px-4 py-2">
+                    {item}
+                </td>
+            ))}
+
+            {/* Célula com botões */}
+            <td className="border px-4 py-2 whitespace-nowrap">
+                <div className="flex gap-2">
+                    <BotaoTabela nome="✏️" />
+                    <BotaoTabela nome="❌" />
+                </div>
+            </td>
         </tr>
     );
 }

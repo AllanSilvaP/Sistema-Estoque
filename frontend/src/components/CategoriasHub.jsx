@@ -2,28 +2,28 @@ import React, {useEffect, useState} from "react";
 import BotaoNavbarL from "./BotaoNavbarL";
 import InputCampo from "./InputCampo";
 import CardRegistro from "./CardRegistro"
-import { getProdutos } from "../services/ApiProduto";
+import { getCategorias } from "../services/ApiCategorias";
 
 export default function ProdutosHub() {
-    const [produtos, setProdutos] = useState([])
+    const [categorias, setCategorias] = useState([])
 
-    // GET PRODUTOS
+    // GET CATEGORIAS
     useEffect(() => {
-        getProdutos()
-        .then(setProdutos)
+        getCategorias()
+        .then(setCategorias)
         .catch((err) => {
             console.error(err)
-            alert("Erro ao carregar produtos")
+            alert("Erro ao carregar categorias")
         })
     }, [])
 
     return (
         <div className="flex flex-col h-full w-full bg-[#F7F5F2] p-6 items-center">
-            <h2 className="text-2xl font-bold text-[#12714D] mb-4">Produtos</h2>
+            <h2 className="text-2xl font-bold text-[#12714D] mb-4">Categorias</h2>
             <InputCampo placeholder="🔍 Pesquise aqui!" className="w-full max-w-md mb-6" />
 
             <div className="flex space-x-3">
-                <BotaoNavbarL nome="Adicionar Produto" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966" />
+                <BotaoNavbarL nome="Adicionar Categoria" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966" />
                 <BotaoNavbarL nome="Filtrar" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966"/>
             </div>
 
@@ -38,7 +38,7 @@ export default function ProdutosHub() {
                     </thead>
 
                     <tbody>
-                        {produtos.map((cat) => (
+                        {categorias.map((cat) => (
                             <CardRegistro
                                 key={cat.id}
                                 dados = {[cat.nome, cat.descricao, cat.tipo]}
