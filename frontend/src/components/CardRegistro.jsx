@@ -1,7 +1,7 @@
 import React from "react";
 import BotaoTabela from "./BotaoTabela";
 
-export default function CardRegistro({ dados = [], className = "" }) {
+export default function CardRegistro({ dados = [], className = "", onEditar, onDeletar }) {
     return (
         <tr className={`hover:bg-gray-50 ${className}`}>
             {/* Células de dados */}
@@ -10,14 +10,18 @@ export default function CardRegistro({ dados = [], className = "" }) {
                     {item}
                 </td>
             ))}
-
-            {/* Célula com botões */}
-            <td className="border px-4 py-2 whitespace-nowrap">
-                <div className="flex gap-2">
-                    <BotaoTabela nome="✏️" />
-                    <BotaoTabela nome="❌" />
+            <td className="border px-4 py-2">
+                <div className="flex justify-end gap-2">
+                    <BotaoTabela nome="✏️" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966" 
+                        onClick={onEditar}
+                    />
+                    <BotaoTabela nome="❌" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966" 
+                        onClick={onDeletar}
+                    />
                 </div>
             </td>
+            {/* Célula com botões */}
+
         </tr>
     );
 }
