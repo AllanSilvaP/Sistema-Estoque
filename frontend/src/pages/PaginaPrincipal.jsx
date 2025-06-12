@@ -5,6 +5,8 @@ import EstoqueHub from "../components/EstoqueHub";
 import CategoriasHub from "../components/CategoriasHub"
 import HistoricoHub from "../components/HistoricoHub"
 import ProdutosHub from "../components/ProdutosHub";
+import RequisicoesHub from "../components/RequisicoesHub"
+import LocaisHub from "../components/LocaisHub";
 
 export default function PaginaPrincipal() {
     const [componenteAtivo, setComponenteAtivo] = useState('produtos')
@@ -19,6 +21,10 @@ export default function PaginaPrincipal() {
                 return <HistoricoHub/>
             case "produtos":
                 return <ProdutosHub/>
+            case "requisicoes":
+                return <RequisicoesHub/>
+            case "local":
+                return <LocaisHub/>
             default:
                 return <div className="p-4">Escolha uma opção no menu</div>;
         }

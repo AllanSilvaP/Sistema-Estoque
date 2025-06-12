@@ -1,17 +1,17 @@
 const API_URL = "http://localhost:8000/api/estoque/"
 
-export async function getCategorias() {
-    const response = await fetch(`${API_URL}categorias/`)
+export async function getLocais() {
+    const response = await fetch(`${API_URL}localestocagens/`)
 
     if (!response.ok) {
-        throw new Error("Erro ao buscar Categoria")
+        throw new Error("Erro ao buscar localestocagens")
     }
     const data = await response.json()
     return data
 }
 
-export async function submitCategorias(dados) {
-    const response = await fetch(`${API_URL}categorias/`, {
+export async function submitLocais(dados) {
+    const response = await fetch(`${API_URL}localestocagens/`, {
         method: "POST",
             headers: {
             "Content-Type": "application/json"
@@ -27,8 +27,8 @@ export async function submitCategorias(dados) {
     return data
 }
 
-export async function editCategorias(dados) {
-    const response = await fetch(`${API_URL}categorias/${dados.id}/`, {
+export async function editLocais(dados) {
+    const response = await fetch(`${API_URL}localestocagens/${dados.id}/`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -44,8 +44,8 @@ export async function editCategorias(dados) {
     return data
 }
 
-export async function deleteCategorias (id) {
-    const response = await fetch(`${API_URL}categorias/${id}/`, {
+export async function deleteLocais (id) {
+    const response = await fetch(`${API_URL}localestocagens/${id}/`, {
         method: "DELETE",
     })
 
