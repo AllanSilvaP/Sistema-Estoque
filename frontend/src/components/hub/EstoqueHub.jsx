@@ -1,7 +1,7 @@
 import React from "react";
-import BotaoNavbarL from "./BotaoNavbarL";
-import InputCampo from "./InputCampo";
-import CardRegistro from "./CardRegistro"
+import BotaoNavbarL from "../layout/BotaoNavbarL";
+import InputCampo from "../layout/InputCampo";
+import CardRegistro from "../layout/CardRegistro"
 
 export default function EstoqueHub() {
     return (
@@ -30,6 +30,7 @@ export default function EstoqueHub() {
                             <th className="border px-4 py-2">Quantidade</th>
                             <th className="border px-4 py-2">Validade</th>
                             <th className="border px-4 py-2">Origem</th>
+                            <th className="border px-4 py-2">Ações</th>
                         </tr>
                     </thead>
 

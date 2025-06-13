@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import Navbar from '../components/Navbar';
-import NavbarLateral from "../components/NavbarLateral";
-import EstoqueHub from "../components/EstoqueHub";
-import CategoriasHub from "../components/CategoriasHub"
-import HistoricoHub from "../components/HistoricoHub"
-import ProdutosHub from "../components/ProdutosHub";
-import RequisicoesHub from "../components/RequisicoesHub"
-import LocaisHub from "../components/LocaisHub";
+import Navbar from '../components/layout/Navbar';
+import NavbarLateral from "../components/layout/NavbarLateral";
+import EstoqueHub from "../components/hub/EstoqueHub";
+import CategoriasHub from "../components/hub/CategoriasHub"
+import HistoricoHub from "../components/hub/HistoricoHub"
+import ProdutosHub from "../components/hub/ProdutosHub";
+import RequisicoesHub from "../components/hub/RequisicoesHub"
+import LocaisHub from "../components/hub/LocaisHub";
+import LoteHub from "../components/hub/LoteHub"
 
 export default function PaginaPrincipal() {
     const [componenteAtivo, setComponenteAtivo] = useState('produtos')
@@ -25,6 +26,8 @@ export default function PaginaPrincipal() {
                 return <RequisicoesHub/>
             case "local":
                 return <LocaisHub/>
+            case "lote":
+                return <LoteHub/>
             default:
                 return <div className="p-4">Escolha uma opção no menu</div>;
         }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import BotaoNavbarL from "./BotaoNavbarL";
-import InputCampo from "./InputCampo";
-import CardRegistro from "./CardRegistro"
-import FormProduto from "./FormProduto"
-import { deleteProdutos, editProdutos, getProdutos, submitProdutos } from "../services/ApiProduto";
+import BotaoNavbarL from "../layout/BotaoNavbarL";
+import InputCampo from "../layout/InputCampo";
+import CardRegistro from "../layout/CardRegistro"
+import FormProduto from "../forms/FormProduto"
+import { deleteProdutos, editProdutos, getProdutos, submitProdutos } from "../../services/ApiProduto";
 
 export default function ProdutosHub() {
     const [produtos, setProdutos] = useState([])
@@ -86,7 +86,7 @@ export default function ProdutosHub() {
                         {produtos.map((cat) => (
                             <CardRegistro
                                 key={cat.id}
-                                dados={[cat.nome, cat.descricao, cat.codigo_barras, cat.fabricante, cat.categoria, cat.temperatura_armazenamento, cat.criado_em]}
+                                dados={[cat.nome, cat.descricao, cat.codigo_barras, cat.fabricante, cat.categoria.nome, cat.temperatura_armazenamento, cat.criado_em]}
                                 onEditar={() => {
                                     setForm(cat)
                                     setModoEdicao(true)
@@ -110,7 +110,7 @@ export default function ProdutosHub() {
             {modalAberto && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
-                        <h3 className="text-lg font-bold mb-4 text-[#12714D]">Nova Categoria</h3>
+                        <h3 className="text-lg font-bold mb-4 text-[#12714D]">Novo Produto</h3>
                         <FormProduto
                             onSubmit={submitProduto}
                             form={form}

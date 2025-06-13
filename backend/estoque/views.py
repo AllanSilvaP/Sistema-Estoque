@@ -1,6 +1,8 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+
 from .models import Produto, Categoria, LocalEstocagem, Lote, Entrada, Saida
-from .serializers import ProdutoSerializers, CategoriaSerializes, LocalEstocagemSerializers, LoteSerializers, EntradaSerializers, SaidaSerializers
+from .serializers import ProdutoSerializers, CategoriaSerializes, LocalEstocagemSerializers, LoteWriteSerializers, LoteReadSerializers, EntradaSerializers, SaidaSerializers
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
@@ -15,7 +17,11 @@ class LocalEstocagemViewSet(viewsets.ModelViewSet):
     
 class LoteViewSet(viewsets.ModelViewSet):
     queryset = Lote.objects.all()
-    serializer_class = LoteSerializers
+    
+    def get_serializer_class(self):
+        if self.request.method in ['POST', 'PUT', 'PATCH']:
+            return LoteWriteSerializers
+        return LoteReadSerializers
     
 class EntradaViewSet(viewsets.ModelViewSet):
     queryset = Entrada.objects.all()

@@ -1,5 +1,5 @@
 import React from "react";
-import InputCampo from "./InputCampo";
+import InputCampo from "../layout/InputCampo";
 
 export default function FormCategoria ({ onSubmit, form, setForm, onCancel }) {
     return (
@@ -18,33 +18,9 @@ export default function FormCategoria ({ onSubmit, form, setForm, onCancel }) {
             />
             <InputCampo
                 type="text"
-                value={form.codigo_barras}
-                onChange={(e) => setForm({...form, codigo_barras: e.target.value})}
-                placeholder="Codigo de Barras"
-            />
-            <InputCampo
-                type="text"
-                value={form.fabricante}
-                onChange={(e) => setForm({...form, fabricante: e.target.value})}
-                placeholder="Fabricante"
-            />
-            <InputCampo
-                type="text"
-                value={form.categoria}
-                onChange={(e) => setForm({...form, categoria: e.target.value})}
-                placeholder="Codigo de Barras"
-            />
-            <InputCampo
-                type="text"
-                value={form.temperatura_armazenamento}
-                onChange={(e) => setForm({...form, temperatura_armazenamento: e.target.value})}
-                placeholder="Temperatura de armazenamento"
-            />
-            <InputCampo
-                type="text"
-                value={form.criado_em}
-                onChange={(e) => setForm({...form, criado_em: e.target.value})}
-                placeholder="editado em"
+                value={form.tipo}
+                onChange={(e) => setForm({...form, tipo: e.target.value})}
+                placeholder="Tipo"
             />
             <div className="flex justify-end mt-4 space-x-2">
                 <button

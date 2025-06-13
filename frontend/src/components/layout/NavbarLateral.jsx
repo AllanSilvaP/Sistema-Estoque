@@ -9,7 +9,7 @@ export default function NavbarLateral({ onSelecionar}) {
         { nome: "Relatórios", valor: "relatorios" },
         { nome: "Produtos", valor: "produtos" },
         { nome: "Categorias", valor: "categorias" },
-        { nome: "Setores", valor: "setores" },
+        { nome: "Lotes", valor: "lote" },
         { nome: "Locais", valor: "local" },
         { nome: "Perfil", valor: "perfil" },
         { nome: "Histórico", valor: "historico" },

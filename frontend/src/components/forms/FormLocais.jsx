@@ -1,5 +1,5 @@
 import React from "react";
-import InputCampo from "./InputCampo";
+import InputCampo from "../layout/InputCampo";
 
 export default function FormCategoria ({ onSubmit, form, setForm, onCancel }) {
     return (
@@ -23,15 +23,15 @@ export default function FormCategoria ({ onSubmit, form, setForm, onCancel }) {
                 placeholder="Endereço"
             />
             <InputCampo
-                type="text"
+                type="number"
                 value={form.capacidade_maxima}
-                onChange={(e) => setForm({...form, capacidade_maxima: e.target.value})}
+                onChange={(e) => setForm({...form, capacidade_maxima: e.target.value === ''?'' : parseInt(e.target.value)})}
                 placeholder="Capacidade Maxima"
             />
             <InputCampo
                 type="checkbox"
                 value={form.temperatura_controlada}
-                onChange={(e) => setForm({...form, temperatura_controlada: e.target.value})}
+                onChange={(e) => setForm({...form, temperatura_controlada: e.target.checked})}
                 placeholder="Temperatura de controlada"
             />
             <div className="flex justify-end mt-4 space-x-2">
