@@ -36,12 +36,9 @@ export default function LocaisHub() {
             const { nome, ...formSemNome } = form
             if (modoEdicao) {
                 const loteAtualizado = await editLotes(formSemNome)
-                console.log("Form sendo enviado:", formSemNome)
-
                 setLotes(lotes.map(cat => cat.id === loteAtualizado.id ? loteAtualizado : cat))
             } else {
                 const novoCad = await submitLotes(formSemNome)
-                console.log("Form sendo enviado:", formSemNome)
                 setLotes([...lotes, novoCad])
             }
             setModalAberto(false)
@@ -56,8 +53,6 @@ export default function LocaisHub() {
             })
         } catch (err) {
             console.error(err)
-            console.log("Form sendo enviado:", form)
-
             alert("Erro ao cadastrar")
         }
     }

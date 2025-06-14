@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import InputCampo from '../components/InputCampo'
-import Navbar from '../components/Navbar'
+import InputCampo from '../components/layout/InputCampo'
+import Navbar from '../components/layout/Navbar'
 import { login } from '../services/ApiUsuario'
 import { useNavigate } from 'react-router-dom'
 
