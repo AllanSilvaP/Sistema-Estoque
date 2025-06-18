@@ -84,7 +84,7 @@ export default function RequisicoesHub() {
                         {requisicoes.map((cat) => (
                             <CardRegistro
                                 key={cat.id}
-                                dados={[cat.solicitante, cat.local_origem, cat.local_destino, cat.status, cat.data_requisicao, cat.observacao]}
+                                dados={[cat.solicitante.nome, cat.local_origem.nome, cat.local_destino.nome, cat.status, cat.data_requisicao, cat.observacao]}
                                 onEditar={() => {
                                     setForm(cat)
                                     setModoEdicao(true)
