@@ -53,7 +53,6 @@ export default function ProdutosHub() {
             })
         } catch (err) {
             console.error(err)
-            console.log("Form sendo enviado:", form)
             alert("Erro ao cadastrar")
         }
     }

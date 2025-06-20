@@ -50,7 +50,6 @@ export default function Login() {
                         </div>
                         <div className="flex flex-col space-y-3 mt-6 p-4 rounded-lg">
                             <button type="submit" className='bg-white text-black font-semibold py-2 rounded hover:bg-red-100 hover:cursor-pointer'>Entrar</button>
-                            <p className='text-[#F1F1F1]'>Não tem conta? <a href="#" className="text-[#4ADE80] font-bold">Cadastre-se</a></p>
                         </div>
                     </form>
                 </div>

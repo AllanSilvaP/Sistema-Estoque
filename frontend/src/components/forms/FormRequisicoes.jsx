@@ -1,9 +1,20 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import InputCampo from "../layout/InputCampo";
+import { getLocais } from "../../services/ApiLocais";
 
 
 
 export default function FormProduto({ onSubmit, form, setForm, onCancel }) {
+    const [locais, setLocais] = useState([])
+    // GET Locais
+    useEffect(() => {
+        getLocais()
+            .then(setLocais)
+            .catch((err) => {
+                console.error(err)
+                alert("Erro ao carregar produtos")
+            })
+    }, [])
 
     function arrumarData(dataValidade) {
         if (!dataValidade) return '';
@@ -18,24 +29,38 @@ export default function FormProduto({ onSubmit, form, setForm, onCancel }) {
                 onChange={(e) => setForm({ ...form, solicitante: e.target.value })}
                 placeholder="ID USUARIO"
             />
-            <InputCampo
-                type="text"
+            <select
+                className="w-full border p-2 rounded text-gray-700"
                 value={form.local_origem}
                 onChange={(e) => setForm({ ...form, local_origem: e.target.value })}
-                placeholder="ID ORIGEM"
-            />
-            <InputCampo
-                type="text"
+            >
+                <option value="">Selecione o local de Origem</option>
+                {locais
+                .filter((cat) => cat.id !== parseInt(form.local_origem))
+                .map((cat, idx) => (
+                    <option key={idx}value={parseInt(cat.id)}>{cat.nome}</option>
+                ))}
+            </select>
+            <select
+                className="w-full border p-2 rounded text-gray-700"
                 value={form.local_destino}
                 onChange={(e) => setForm({ ...form, local_destino: e.target.value })}
-                placeholder="ID DESTINO"
-            />
-            <InputCampo
-                type="text"
-                value={form.status}
-                onChange={(e) => setForm({ ...form, status: e.target.value })}
-                placeholder="Em espera, aprovado, recusado"
-            />
+            >
+                <option value="">Selecione o local de Destino</option>
+                {locais.map((cat, idx) => (
+                    <option key={idx}value={parseInt(cat.id)}>{cat.nome}</option>
+                ))}
+            </select>
+            <select
+                className="w-full border p-2 rounded text-gray-700"
+                value={form.categoria}
+                onChange={(e) => setForm({ ...form, categoria: e.target.value })}
+            >
+                <option value="">Selecione a Categoria</option>
+                <option value="Aprovado">Aprovado</option>
+                <option value="Reprovado">Reprovado</option>
+                <option value="Em analise">Em analise</option>
+            </select>
             <InputCampo
                 type="date"
                 value={arrumarData(form.data_requisicao)}

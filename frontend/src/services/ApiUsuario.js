@@ -17,7 +17,7 @@ export const login = async (email, senha) => {
 }
 
 export const cadastrarUsuario = async (dados) => {
-    const response = await fetch(`${API_URL}/usuario/cadastro/`, {
+    const response = await fetch(`${API_URL}/usuarios/cadastro/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

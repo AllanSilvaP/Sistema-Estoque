@@ -48,7 +48,7 @@ export default function FormProduto({ onSubmit, form, setForm, onCancel }) {
             >
                 <option value="">Selecione a Categoria</option>
                 {categorias.map((cat, idx) => (
-                    <option key={idx}value={cat.id}>{cat.nome}</option>
+                    <option key={idx}value={parseInt(cat.id)}>{cat.nome}</option>
                 ))}
             </select>
             <InputCampo

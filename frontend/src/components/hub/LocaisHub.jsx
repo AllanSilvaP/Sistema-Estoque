@@ -17,7 +17,7 @@ export default function LocaisHub() {
         temperatura_controlada: false,
     })
 
-    // GET PRODUTOS
+    // GET Locais
     useEffect(() => {
         getLocais()
             .then(setLocais)
