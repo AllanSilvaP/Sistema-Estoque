@@ -12,8 +12,7 @@ export default function NavbarLateral({ onSelecionar}) {
         { nome: "Lotes", valor: "lote" },
         { nome: "Locais", valor: "local" },
         { nome: "Perfil", valor: "perfil" },
-        { nome: "Histórico", valor: "historico" },
-        { nome: "Configurações", valor: "configuracoes" }
+        { nome: "Cadastros", valor: "cadastro" },
     ]
     return (
         <nav className="w-64 bg-[#12714D] shadow-inner fixed top-[60px] right-0 w-64 h-[calc(100vh-60px)] shadow-lg z-20">

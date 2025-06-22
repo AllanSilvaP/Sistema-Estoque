@@ -1,4 +1,10 @@
 const API_URL = "http://localhost:8000/api"
+const token = localStorage.getItem("access_token")
+
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: `Beare ${token}`
+}
 
 export const login = async (email, senha) => {
     const response = await fetch(`${API_URL}/usuarios/login/`, {
@@ -50,3 +56,30 @@ export const getPerfil = async () => {
 
   return await response.json();
 };
+
+//CRUD
+
+export const getUsuarios = async () => {
+  const response = await fetch(`${API_URL}/usuarios/`, {headers})
+  if (!response.ok) throw new Error("Erro ao buscar usuários")
+  return await response.json()
+}
+
+export const editUsuarios = async (id, dados) => {
+  const response = await fetch(`${API_URL}/usuarios/${id}/`, {
+    method: "PUT", 
+    headers,
+    body: JSON.stringify(dados)
+  })
+  if (!response.ok) throw new Error("Erro ao editar usuário")
+  return await response.json()
+}
+
+export const deleteUsuarios = async (id) => {
+  const response = await fetch(`${API_URL}/usuarios/`, {
+    method: "DELETE",
+    headers
+  })
+  if (!response.ok) throw new Error("Erro ao deletar usuário")
+  return true;
+}

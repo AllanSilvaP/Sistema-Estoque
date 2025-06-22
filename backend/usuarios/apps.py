@@ -12,8 +12,6 @@ class UsuariosConfig(AppConfig):
         try:
             from requisicoes.models import Requisicao
             from estoque.models import Produto, Categoria, Lote, LocalEstocagem, Entrada, Saida
-            from historico.models import HistoricoMovimentacao
-            from usuarios.models import Usuario # Este modelo já estará pronto, pois pertence a este app
         except Exception as e:
             print(f"Aviso: Não foi possível carregar alguns modelos para permissões: {e}")
             return # Sai do método ready se os modelos não puderem ser carregados
@@ -51,7 +49,6 @@ class UsuariosConfig(AppConfig):
         add_permissions(admin_group, Lote, full_perms)
         add_permissions(admin_group, LocalEstocagem, full_perms)
         add_permissions(admin_group, Requisicao, full_perms)
-        add_permissions(admin_group, HistoricoMovimentacao, full_perms)
         add_permissions(admin_group, Entrada, full_perms)
         add_permissions(admin_group, Saida, full_perms)
 
@@ -61,7 +58,6 @@ class UsuariosConfig(AppConfig):
         add_permissions(gerente_group, Lote, full_perms)
         add_permissions(gerente_group, LocalEstocagem, view_perm)
         add_permissions(gerente_group, Requisicao, full_perms)
-        add_permissions(gerente_group, HistoricoMovimentacao, view_perm)
         add_permissions(gerente_group, Entrada, full_perms)
         add_permissions(gerente_group, Saida, full_perms)
 
@@ -71,10 +67,8 @@ class UsuariosConfig(AppConfig):
         add_permissions(operador_group, Lote, view_perm)
         add_permissions(operador_group, LocalEstocagem, view_perm)
         add_permissions(operador_group, Requisicao, add_edit_perm)
-        add_permissions(operador_group, HistoricoMovimentacao, view_perm)
         add_permissions(operador_group, Entrada, full_perms)
         add_permissions(operador_group, Saida, full_perms)
 
         # Auditor
         add_permissions(auditor_group, LocalEstocagem, view_perm)
-        add_permissions(auditor_group, HistoricoMovimentacao, view_perm)

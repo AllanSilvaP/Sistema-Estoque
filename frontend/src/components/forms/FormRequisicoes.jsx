@@ -53,8 +53,8 @@ export default function FormProduto({ onSubmit, form, setForm, onCancel }) {
             </select>
             <select
                 className="w-full border p-2 rounded text-gray-700"
-                value={form.categoria}
-                onChange={(e) => setForm({ ...form, categoria: e.target.value })}
+                value={form.status}
+                onChange={(e) => setForm({ ...form, status: e.target.value })}
             >
                 <option value="">Selecione a Categoria</option>
                 <option value="Aprovado">Aprovado</option>

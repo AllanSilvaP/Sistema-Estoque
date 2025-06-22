@@ -47,13 +47,6 @@ export default function FormLotes({ onSubmit, form, setForm, onCancel }) {
                 ))}
             </select>
             <InputCampo
-                type="text"
-                value={form.numero_lote}
-                onChange={(e) => setForm({ ...form, numero_lote: e.target.value })}
-                placeholder="Número do Lote"
-                required
-            />
-            <InputCampo
                 type="date"
                 value={arrumarData(form.data_validade)}
                 onChange={(e) => setForm({ ...form, data_validade: e.target.value })}
@@ -65,13 +58,6 @@ export default function FormLotes({ onSubmit, form, setForm, onCancel }) {
                 value={form.quantidade}
                 onChange={(e) => setForm({ ...form, quantidade: e.target.value === '' ? '' : parseInt(e.target.value) })}
                 placeholder="Quantidade"
-                required
-            />
-            <InputCampo
-                type="text"
-                value={form.origem}
-                onChange={(e) => setForm({ ...form, origem: e.target.value })}
-                placeholder="Origem"
                 required
             />
             <select

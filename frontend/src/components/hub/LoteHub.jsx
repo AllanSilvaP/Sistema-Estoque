@@ -14,7 +14,6 @@ export default function LocaisHub() {
         numero_lote: '',
         data_validade: '',
         quantidade: '',
-        origem: '',
         armazenado_em: '',
     })
 
@@ -48,7 +47,6 @@ export default function LocaisHub() {
                 numero_lote: '',
                 data_validade: '',
                 quantidade: '',
-                origem: '',
                 armazenado_em: '',
             })
         } catch (err) {
@@ -74,8 +72,7 @@ export default function LocaisHub() {
                             <th className="border px-4 py-2">Nome</th>
                             <th className="border px-4 py-2">Numero Lote</th>
                             <th className="border px-4 py-2">Data Validade</th>
-                            <th className="border px-4 py-2">Quantidade</th>
-                            <th className="border px-4 py-2">Origem</th>
+                            <th className="border px-4 py-2">Quantidade</th>         
                             <th className="border px-4 py-2">Armazenado em</th>
                             <th className="border px-4 py-2">Ações</th>
                         </tr>
@@ -85,7 +82,7 @@ export default function LocaisHub() {
                         {lotes.map((cat) => (
                             <CardRegistro
                                 key={cat.id}
-                                dados={[cat.produto.nome, cat.numero_lote, cat.data_validade, cat.quantidade, cat.origem, cat.armazenado_em.nome]}
+                                dados={[cat.produto.nome, cat.numero_lote, cat.data_validade, cat.quantidade, cat.armazenado_em.nome]}
                                 onEditar={() => {
                                     const { nome, armazenado_em, produto, ...rest } = cat
                                     setForm({

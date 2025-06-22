@@ -11,8 +11,7 @@ export default function ProdutosHub() {
     const [modoEdicao, setModoEdicao] = useState(false)
     const [form, setForm] = useState({
         nome: '',
-        descricao: '',
-        codigo_barras: '',
+        descricao: '',  
         fabricante: '',
         categoria: '',
         temperatura_armazenamento: '',
@@ -44,8 +43,7 @@ export default function ProdutosHub() {
             setModoEdicao(false)
             setForm({
                 nome: '',
-                descricao: '',
-                codigo_barras: '',
+                descricao: '',    
                 fabricante: '',
                 categoria: '',
                 temperatura_armazenamento: '',
@@ -55,6 +53,11 @@ export default function ProdutosHub() {
             console.error(err)
             alert("Erro ao cadastrar")
         }
+    }
+
+    const arrumarData = (data) => {
+        const dataArrumada = new Date(data)
+        return dataArrumada.toISOString().split('T')[0];
     }
 
     return (
@@ -73,7 +76,6 @@ export default function ProdutosHub() {
                         <tr>
                             <th className="border px-4 py-2">Nome</th>
                             <th className="border px-4 py-2">Descrição</th>
-                            <th className="border px-4 py-2">Codigo Barras</th>
                             <th className="border px-4 py-2">Fabricante</th>
                             <th className="border px-4 py-2">Categoria</th>
                             <th className="border px-4 py-2">Temperatura Armazenamento</th>
@@ -86,7 +88,7 @@ export default function ProdutosHub() {
                         {produtos.map((cat) => (
                             <CardRegistro
                                 key={cat.id}
-                                dados={[cat.nome, cat.descricao, cat.codigo_barras, cat.fabricante, cat.categoria.nome, cat.temperatura_armazenamento, cat.criado_em]}
+                                dados={[cat.nome, cat.descricao, cat.fabricante, cat.categoria.nome, cat.temperatura_armazenamento + "ºC", arrumarData(cat.criado_em)]}
                                 onEditar={() => {
                                     setForm(cat)
                                     setModoEdicao(true)

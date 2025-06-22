@@ -31,12 +31,6 @@ export default function FormProduto({ onSubmit, form, setForm, onCancel }) {
             />
             <InputCampo
                 type="text"
-                value={form.codigo_barras}
-                onChange={(e) => setForm({ ...form, codigo_barras: e.target.value })}
-                placeholder="Codigo de Barras"
-            />
-            <InputCampo
-                type="text"
                 value={form.fabricante}
                 onChange={(e) => setForm({ ...form, fabricante: e.target.value })}
                 placeholder="Fabricante"

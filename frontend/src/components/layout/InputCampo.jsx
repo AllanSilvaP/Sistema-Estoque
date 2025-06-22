@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function InputCampo ({type = "text", value, onChange, placeholder, className  = ''}) {
     return (
         <input type={type} value={value} onChange={onChange} placeholder={placeholder} 
