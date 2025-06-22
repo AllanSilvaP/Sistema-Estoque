@@ -1,6 +1,6 @@
 from django.db import models
 from usuarios.models import Usuario
-from estoque.models import LocalEstocagem
+from estoque.models import LocalEstocagem, Lote
 # Create your models here.
 
 class Requisicao(models.Model):
@@ -13,3 +13,11 @@ class Requisicao(models.Model):
     
     def __str__(self):
         return f'Requisição #{self.id} - {self.status}'
+    
+class ItemRequisicao(models.Model):
+    requisicao = models.ForeignKey(Requisicao, on_delete=models.CASCADE, related_name='itens')
+    lote = models.ForeignKey(Lote, on_delete=models.PROTECT)
+    quantidade = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.quantidade} unidades de {self.lote.produto.nome} (Lote: {self.lote.numero_lote})"

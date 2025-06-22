@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Requisicao
-from .serializers import RequisicaoReadSerializers, RequisicaoWriteSerializers
+from .models import Requisicao, ItemRequisicao
+from .serializers import RequisicaoReadSerializers, RequisicaoWriteSerializers, ItemRequisicaoSerializers
 
 class RequisicaoViewSet(viewsets.ModelViewSet):
     queryset = Requisicao.objects.all()
@@ -11,5 +11,6 @@ class RequisicaoViewSet(viewsets.ModelViewSet):
         else:
             return RequisicaoReadSerializers
     
-
-# Create your views here.
+class ItemRequisicaoViewSet(viewsets.ModelViewSet):
+    queryset = ItemRequisicao.objects.all()
+    serializer_class = ItemRequisicaoSerializers

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'historico',
     #CORS
     'corsheaders',
+    #APPS CARGOS
+    'usuarios.apps.UsuariosConfig'
 ]
 
 MIDDLEWARE = [

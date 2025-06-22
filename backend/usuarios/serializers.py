@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import Usuario, Grupo
+from .models import Usuario
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['id', 'nome', 'email', 'senha', 'grupo']
+        fields = ['id', 'nome', 'email', 'senha', 'grupo', 'local']
         extra_kwargs = {'senha': {'write_only': True}}
         
     def create(self, validated_data):
@@ -14,9 +14,4 @@ class UsuarioSerializer(serializers.ModelSerializer):
         usuario.save()
         return usuario
     
-class GrupoSerializer(serializers.ModelSerializer):
-    class Meta():
-        model = Grupo
-        fields = ['id', 'nome']
-        
         

@@ -4,7 +4,6 @@ import logging
 from .models import Produto, Categoria, LocalEstocagem, Lote, Entrada, Saida
 from .serializers import ProdutoWriteSerializers, ProdutoReadSerializers, CategoriaSerializes, LocalEstocagemSerializers, LoteWriteSerializers, LoteReadSerializers, EntradaSerializers, SaidaSerializers
 
-logger = logging.getLogger(__name__)
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializes

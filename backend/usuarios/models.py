@@ -5,19 +5,14 @@ from django.contrib.auth.models import (
     Group, Permission
 )
 from django.utils.translation import gettext_lazy as _
-
-class Grupo (models.Model):
-    nome = models.CharField(max_length=50)
-    
-    def __str__(self):
-        return self.nome
+from estoque.models import LocalEstocagem
     
 class UsuarioManager (BaseUserManager):
     def create_user(self, email, nome, senha=None, grupo=None):
         if not email:
             raise ValueError('Email obrigatório')
         email = self.normalize_email(email)
-        user = self.model(email=email, nome= nome, grupo=grupo)
+        user = self.model(email=email, nome= nome)
         user.set_password(senha)
         user.save(using=self._db)
         return user
@@ -34,10 +29,9 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(max_length=150)
     email = models.EmailField(unique=True, max_length=254)
     senha = models.CharField(max_length=128)
-    grupo = models.ForeignKey(Grupo, on_delete=models.PROTECT)
     data_criacao = models.DateTimeField(auto_now_add=True)
     ativo = models.BooleanField(default=True)
-
+    local = models.ForeignKey(LocalEstocagem, on_delete=models.PROTECT, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
 
     groups = models.ManyToManyField(

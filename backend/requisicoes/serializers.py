@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Requisicao
+from .models import Requisicao, ItemRequisicao
 from estoque.serializers import LocalEstocagemSerializers
 from usuarios.serializers import UsuarioSerializer
 
@@ -16,4 +16,9 @@ class RequisicaoReadSerializers(serializers.ModelSerializer):
 class RequisicaoWriteSerializers(serializers.ModelSerializer):
     class Meta:
         model = Requisicao
+        fields = '__all__'
+
+class ItemRequisicaoSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ItemRequisicao
         fields = '__all__'

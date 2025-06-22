@@ -1,6 +1,6 @@
 from django.db import models
 import uuid
-from usuarios.models import Usuario
+from django.conf import settings
 # Create your models here.
 
 class Categoria(models.Model):
@@ -15,7 +15,6 @@ class Produto (models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     nome = models.CharField(max_length=200)
     descricao = models.TextField()
-    codigo_barras = models.CharField(max_length=100)
     fabricante = models.CharField(max_length=100)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     temperatura_armazenamento = models.CharField(max_length=50)
@@ -37,28 +36,33 @@ class LocalEstocagem(models.Model):
     
 class Lote(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.PROTECT)
-    numero_lote = models.CharField(max_length=100)
+    numero_lote = models.CharField(max_length=100, unique=True, blank=True)
+    data_criacao = models.DateField(auto_now=True)
     data_validade = models.DateField()
     quantidade = models.IntegerField()
-    origem = models.CharField(max_length=100)
+    quantidade_disponivel = models.IntegerField(default=0)
     armazenado_em = models.ForeignKey(LocalEstocagem, on_delete=models.PROTECT)
     
+    def save(self, *args, **kwargs):
+        if not self.numero_lote:
+            self.numero_lote = f'LOTE-{uuid.uuid4().hex[:6].upper()}'
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f'{self.numero_lote} - {self.produto.nome}'
         
 class Entrada(models.Model):
     lote = models.ForeignKey(Lote, on_delete=models.PROTECT)
-    responsavel = models.ForeignKey(Usuario, on_delete=models.PROTECT)
+    responsavel = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     quantidade_entrada = models.IntegerField()
     data_entrada = models.DateField()
-    documento_referencia = models.CharField(max_length=100)
     
     def __str__(self):
         return f'Entrada: {self.quantidade_entada} - {self.lote}'
     
 class Saida (models.Model):
     lote = models.ForeignKey(Lote, on_delete=models.PROTECT)
-    responsavel = models.ForeignKey(Usuario, on_delete=models.PROTECT)
+    responsavel = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     quantidade_saida = models.IntegerField()
     motivo = models.CharField(max_length=100)
     destino = models.CharField(max_length=100)
