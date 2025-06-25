@@ -33,12 +33,11 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     ativo = models.BooleanField(default=True)
     local = models.ForeignKey(LocalEstocagem, on_delete=models.PROTECT, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
-
     groups = models.ManyToManyField(
         Group,
         verbose_name=_('groups'),
         blank=True,
-        related_name='usuarios_usuario_set',  # <- resolve conflito
+        related_name='usuarios_usuario_set',  
         help_text=_('The groups this user belongs to.'),
         related_query_name='usuario',
     )

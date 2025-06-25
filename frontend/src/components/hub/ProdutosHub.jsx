@@ -56,9 +56,9 @@ export default function ProdutosHub() {
     }
 
     const arrumarData = (data) => {
-        const dataArrumada = new Date(data)
-        return dataArrumada.toISOString().split('T')[0];
-    }
+        const d = new Date(data);
+        return isNaN(d.getTime()) ? "Data inválida" : d.toLocaleDateString('pt-BR');
+    };
 
     return (
         <div className="flex flex-col h-full w-full bg-[#F7F5F2] p-6 items-center">

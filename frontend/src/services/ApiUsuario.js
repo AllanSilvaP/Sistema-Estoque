@@ -3,7 +3,7 @@ const token = localStorage.getItem("access_token")
 
 const headers = {
   "Content-Type": "application/json",
-  Authorization: `Beare ${token}`
+  Authorization: `Bearer ${token}`
 }
 
 export const login = async (email, senha) => {
@@ -41,13 +41,9 @@ export const cadastrarUsuario = async (dados) => {
 
 //pega rota
 export const getPerfil = async () => {
-  const token = localStorage.getItem("access_token");
-
   const response = await fetch(`${API_URL}/usuarios/me/`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers,
   });
 
   if (!response.ok) {
@@ -60,13 +56,13 @@ export const getPerfil = async () => {
 //CRUD
 
 export const getUsuarios = async () => {
-  const response = await fetch(`${API_URL}/usuarios/`, {headers})
+  const response = await fetch(`${API_URL}/usuarios/usuarios/`, {headers})
   if (!response.ok) throw new Error("Erro ao buscar usuários")
   return await response.json()
 }
 
 export const editUsuarios = async (id, dados) => {
-  const response = await fetch(`${API_URL}/usuarios/${id}/`, {
+  const response = await fetch(`${API_URL}/usuarios/usuarios/${id}/`, {
     method: "PUT", 
     headers,
     body: JSON.stringify(dados)
@@ -76,7 +72,7 @@ export const editUsuarios = async (id, dados) => {
 }
 
 export const deleteUsuarios = async (id) => {
-  const response = await fetch(`${API_URL}/usuarios/`, {
+  const response = await fetch(`${API_URL}/usuarios/usuarios/${id}/`, {
     method: "DELETE",
     headers
   })

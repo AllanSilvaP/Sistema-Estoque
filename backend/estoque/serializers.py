@@ -36,6 +36,12 @@ class LoteWriteSerializers(serializers.ModelSerializer):
     class Meta:
         model = Lote
         fields = '__all__'
+
+class LoteResumoSerializer(serializers.ModelSerializer):
+    produto = ProdutoReadSerializers()
+    class Meta:
+        model = Lote
+        fields = ['id', 'numero_lote', 'produto']
         
 class EntradaSerializers(serializers.ModelSerializer):
     class Meta:

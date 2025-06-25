@@ -1,7 +1,7 @@
 import React from "react";
 import BotaoTabela from "./BotaoTabela";
 
-export default function CardRegistro({ dados = [], className = "", onEditar, onDeletar }) {
+export default function CardRegistro({ dados = [], className = "", onEditar, onDeletar , acoesExtra}) {
     return (
         <tr className={`hover:bg-gray-50 ${className}`}>
             {/* Células de dados */}
@@ -18,9 +18,9 @@ export default function CardRegistro({ dados = [], className = "", onEditar, onD
                     <BotaoTabela nome="❌" className="bg-[#12714D] text-[#F1F1F1]" corHover="#169966" 
                         onClick={onDeletar}
                     />
+                    {acoesExtra}
                 </div>
             </td>
-            {/* Célula com botões */}
 
         </tr>
     );

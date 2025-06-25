@@ -60,6 +60,13 @@ export default function FormLotes({ onSubmit, form, setForm, onCancel }) {
                 placeholder="Quantidade"
                 required
             />
+            <InputCampo
+                type="number"
+                value={form.quantidade_disponivel}
+                onChange={(e) => setForm({ ...form, quantidade_disponivel: e.target.value === '' ? '' : parseInt(e.target.value) })}
+                placeholder="Quantidade Disponivel"
+                required
+            />
             <select
             className="w-full border p-2 rounded text-gray-700"
             value={form.armazenado_em}

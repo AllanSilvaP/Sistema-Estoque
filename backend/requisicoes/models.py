@@ -4,10 +4,17 @@ from estoque.models import LocalEstocagem, Lote
 # Create your models here.
 
 class Requisicao(models.Model):
+
+    STATUS_CHOICES = [
+        ("Pendente", "Pendente"),
+        ("Aprovada", "Aprovada"),
+        ("Recusada", "Recusada"),
+    ]
+
     solicitante = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     local_origem = models.ForeignKey(LocalEstocagem, on_delete=models.PROTECT, related_name='requisicoes_origem')
     local_destino = models.ForeignKey(LocalEstocagem, on_delete=models.PROTECT, related_name='requisicoes_destino')
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="Pendente")
     data_requisicao = models.DateField()
     observacao = models.TextField(blank=True)
     

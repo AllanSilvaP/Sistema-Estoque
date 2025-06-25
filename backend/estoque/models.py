@@ -1,4 +1,7 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError as DjangoValidationError
+from rest_framework.exceptions import ValidationError as DRFValidationError
 import uuid
 from django.conf import settings
 # Create your models here.
@@ -42,14 +45,36 @@ class Lote(models.Model):
     quantidade = models.IntegerField()
     quantidade_disponivel = models.IntegerField(default=0)
     armazenado_em = models.ForeignKey(LocalEstocagem, on_delete=models.PROTECT)
+
+    def clean(self):
+        capacidade = self.armazenado_em.capacidade_maxima
+
+        if capacidade is not None:
+            total_ocupado = Lote.objects.filter(
+                armazenado_em=self.armazenado_em
+            ).exclude(pk=self.pk).aggregate(models.Sum('quantidade'))['quantidade__sum'] or 0
+
+            if total_ocupado + self.quantidade > capacidade:
+                raise ValidationError(f"Capacidade excedida: {total_ocupado + self.quantidade} > {capacidade} no local {self.armazenado_em.nome}")
     
     def save(self, *args, **kwargs):
+        self.full_clean()
         if not self.numero_lote:
             self.numero_lote = f'LOTE-{uuid.uuid4().hex[:6].upper()}'
         super().save(*args, **kwargs)
 
+    def create(self, validated_data):
+        try:
+            lote = Lote(**validated_data)
+            lote.full_clean()  # Valida
+            lote.save()
+            return lote
+        except DjangoValidationError as e:
+            raise DRFValidationError(e.message_dict)
+
     def __str__(self):
         return f'{self.numero_lote} - {self.produto.nome}'
+    
         
 class Entrada(models.Model):
     lote = models.ForeignKey(Lote, on_delete=models.PROTECT)

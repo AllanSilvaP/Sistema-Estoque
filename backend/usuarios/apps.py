@@ -10,7 +10,7 @@ class UsuariosConfig(AppConfig):
         from django.contrib.auth.models import Group, Permission
         from django.contrib.contenttypes.models import ContentType
         try:
-            from requisicoes.models import Requisicao
+            from requisicoes.models import Requisicao, ItemRequisicao
             from estoque.models import Produto, Categoria, Lote, LocalEstocagem, Entrada, Saida
         except Exception as e:
             print(f"Aviso: Não foi possível carregar alguns modelos para permissões: {e}")
@@ -50,6 +50,7 @@ class UsuariosConfig(AppConfig):
         add_permissions(admin_group, LocalEstocagem, full_perms)
         add_permissions(admin_group, Requisicao, full_perms)
         add_permissions(admin_group, Entrada, full_perms)
+        add_permissions(admin_group, ItemRequisicao, full_perms)
         add_permissions(admin_group, Saida, full_perms)
 
         # Gerenciador Local
@@ -59,6 +60,7 @@ class UsuariosConfig(AppConfig):
         add_permissions(gerente_group, LocalEstocagem, view_perm)
         add_permissions(gerente_group, Requisicao, full_perms)
         add_permissions(gerente_group, Entrada, full_perms)
+        add_permissions(gerente_group, ItemRequisicao, full_perms)
         add_permissions(gerente_group, Saida, full_perms)
 
     
@@ -67,6 +69,7 @@ class UsuariosConfig(AppConfig):
         add_permissions(operador_group, Lote, view_perm)
         add_permissions(operador_group, LocalEstocagem, view_perm)
         add_permissions(operador_group, Requisicao, add_edit_perm)
+        add_permissions(operador_group, ItemRequisicao, add_edit_perm)
         add_permissions(operador_group, Entrada, full_perms)
         add_permissions(operador_group, Saida, full_perms)
 

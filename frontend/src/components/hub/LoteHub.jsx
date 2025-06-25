@@ -29,31 +29,44 @@ export default function LocaisHub() {
 
     // submitLocais e Edit Cadastro
     const submitLote = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         try {
-            const { nome, ...formSemNome } = form
+            const { nome, ...formSemNome } = form;
+
             if (modoEdicao) {
-                const loteAtualizado = await editLotes(formSemNome)
-                setLotes(lotes.map(cat => cat.id === loteAtualizado.id ? loteAtualizado : cat))
+                const loteAtualizado = await editLotes(formSemNome);
+                setLotes(lotes.map(cat => cat.id === loteAtualizado.id ? loteAtualizado : cat));
             } else {
-                const novoCad = await submitLotes(formSemNome)
-                setLotes([...lotes, novoCad])
+                const novoCad = await submitLotes(formSemNome);
+                setLotes([...lotes, novoCad]);
             }
-            setModalAberto(false)
-            setModoEdicao(false)
+
+            setModalAberto(false);
+            setModoEdicao(false);
             setForm({
                 produto: '',
                 numero_lote: '',
                 data_validade: '',
                 quantidade: '',
                 armazenado_em: '',
-            })
+            });
+
         } catch (err) {
-            console.error(err)
-            alert("Erro ao cadastrar")
-        }
+    console.error("Erro ao cadastrar lote:", err);
+
+    // Se for um objeto (como o JSON com os erros do Django)
+    if (err && typeof err === "object") {
+        const mensagens = Object.values(err)
+            .flat()
+            .join(" ");
+        alert("Erro ao cadastrar lote: " + mensagens);
+    } else {
+        alert("Erro desconhecido ao cadastrar lote.");
     }
+}
+    };
+
 
     return (
         <div className="flex flex-col h-full w-full bg-[#F7F5F2] p-6 items-center">
@@ -72,7 +85,8 @@ export default function LocaisHub() {
                             <th className="border px-4 py-2">Nome</th>
                             <th className="border px-4 py-2">Numero Lote</th>
                             <th className="border px-4 py-2">Data Validade</th>
-                            <th className="border px-4 py-2">Quantidade</th>         
+                            <th className="border px-4 py-2">Quantidade</th>
+                            <th className="border px-4 py-2">Quantidade Disponivel</th>
                             <th className="border px-4 py-2">Armazenado em</th>
                             <th className="border px-4 py-2">Ações</th>
                         </tr>
@@ -82,7 +96,7 @@ export default function LocaisHub() {
                         {lotes.map((cat) => (
                             <CardRegistro
                                 key={cat.id}
-                                dados={[cat.produto.nome, cat.numero_lote, cat.data_validade, cat.quantidade, cat.armazenado_em.nome]}
+                                dados={[cat.produto.nome, cat.numero_lote, cat.data_validade, cat.quantidade, cat.quantidade_disponivel, cat.armazenado_em.nome]}
                                 onEditar={() => {
                                     const { nome, armazenado_em, produto, ...rest } = cat
                                     setForm({
