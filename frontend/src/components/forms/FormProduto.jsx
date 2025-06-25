@@ -31,12 +31,6 @@ export default function FormProduto({ onSubmit, form, setForm, onCancel }) {
             />
             <InputCampo
                 type="text"
-                value={form.codigo_barras}
-                onChange={(e) => setForm({ ...form, codigo_barras: e.target.value })}
-                placeholder="Codigo de Barras"
-            />
-            <InputCampo
-                type="text"
                 value={form.fabricante}
                 onChange={(e) => setForm({ ...form, fabricante: e.target.value })}
                 placeholder="Fabricante"
@@ -48,7 +42,7 @@ export default function FormProduto({ onSubmit, form, setForm, onCancel }) {
             >
                 <option value="">Selecione a Categoria</option>
                 {categorias.map((cat, idx) => (
-                    <option key={idx}value={cat.id}>{cat.nome}</option>
+                    <option key={idx}value={parseInt(cat.id)}>{cat.nome}</option>
                 ))}
             </select>
             <InputCampo

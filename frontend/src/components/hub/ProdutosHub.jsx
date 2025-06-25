@@ -11,8 +11,7 @@ export default function ProdutosHub() {
     const [modoEdicao, setModoEdicao] = useState(false)
     const [form, setForm] = useState({
         nome: '',
-        descricao: '',
-        codigo_barras: '',
+        descricao: '',  
         fabricante: '',
         categoria: '',
         temperatura_armazenamento: '',
@@ -44,8 +43,7 @@ export default function ProdutosHub() {
             setModoEdicao(false)
             setForm({
                 nome: '',
-                descricao: '',
-                codigo_barras: '',
+                descricao: '',    
                 fabricante: '',
                 categoria: '',
                 temperatura_armazenamento: '',
@@ -53,10 +51,14 @@ export default function ProdutosHub() {
             })
         } catch (err) {
             console.error(err)
-            console.log("Form sendo enviado:", form)
             alert("Erro ao cadastrar")
         }
     }
+
+    const arrumarData = (data) => {
+        const d = new Date(data);
+        return isNaN(d.getTime()) ? "Data inválida" : d.toLocaleDateString('pt-BR');
+    };
 
     return (
         <div className="flex flex-col h-full w-full bg-[#F7F5F2] p-6 items-center">
@@ -74,7 +76,6 @@ export default function ProdutosHub() {
                         <tr>
                             <th className="border px-4 py-2">Nome</th>
                             <th className="border px-4 py-2">Descrição</th>
-                            <th className="border px-4 py-2">Codigo Barras</th>
                             <th className="border px-4 py-2">Fabricante</th>
                             <th className="border px-4 py-2">Categoria</th>
                             <th className="border px-4 py-2">Temperatura Armazenamento</th>
@@ -87,7 +88,7 @@ export default function ProdutosHub() {
                         {produtos.map((cat) => (
                             <CardRegistro
                                 key={cat.id}
-                                dados={[cat.nome, cat.descricao, cat.codigo_barras, cat.fabricante, cat.categoria.nome, cat.temperatura_armazenamento, cat.criado_em]}
+                                dados={[cat.nome, cat.descricao, cat.fabricante, cat.categoria.nome, cat.temperatura_armazenamento + "ºC", arrumarData(cat.criado_em)]}
                                 onEditar={() => {
                                     setForm(cat)
                                     setModoEdicao(true)

@@ -17,7 +17,7 @@ export default function LocaisHub() {
         temperatura_controlada: false,
     })
 
-    // GET PRODUTOS
+    // GET Locais
     useEffect(() => {
         getLocais()
             .then(setLocais)
@@ -80,7 +80,7 @@ export default function LocaisHub() {
                         {locais.map((cat) => (
                             <CardRegistro
                                 key={cat.id}
-                                dados={[cat.nome, cat.tipo, cat.endereco, cat.capacidade_maxima, cat.temperatura_controlada]}
+                                dados={[cat.nome, cat.tipo, cat.endereco, cat.capacidade_maxima, cat.temperatura_controlada ? "Sim" : "Não"]}
                                 onEditar={() => {
                                     setForm(cat)
                                     setModoEdicao(true)

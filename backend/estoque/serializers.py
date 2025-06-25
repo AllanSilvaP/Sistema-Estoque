@@ -6,9 +6,15 @@ class CategoriaSerializes(serializers.ModelSerializer):
         model = Categoria
         fields = '__all__'
 
-class ProdutoSerializers(serializers.ModelSerializer):
+class ProdutoReadSerializers(serializers.ModelSerializer):
     categoria = CategoriaSerializes()
     ativo = serializers.BooleanField(default=True, required=False)
+    class Meta:
+        model = Produto
+        fields = '__all__'
+        
+class ProdutoWriteSerializers(serializers.ModelSerializer):
+    categoria = serializers.PrimaryKeyRelatedField(queryset=Categoria.objects.all())
     class Meta:
         model = Produto
         fields = '__all__'
@@ -19,7 +25,7 @@ class LocalEstocagemSerializers(serializers.ModelSerializer):
         fields = '__all__'
         
 class LoteReadSerializers(serializers.ModelSerializer):
-    produto = ProdutoSerializers()
+    produto = ProdutoReadSerializers()
     armazenado_em = LocalEstocagemSerializers()
     
     class Meta:
@@ -30,6 +36,12 @@ class LoteWriteSerializers(serializers.ModelSerializer):
     class Meta:
         model = Lote
         fields = '__all__'
+
+class LoteResumoSerializer(serializers.ModelSerializer):
+    produto = ProdutoReadSerializers()
+    class Meta:
+        model = Lote
+        fields = ['id', 'numero_lote', 'produto']
         
 class EntradaSerializers(serializers.ModelSerializer):
     class Meta:

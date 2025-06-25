@@ -1,7 +1,13 @@
 const API_URL = "http://localhost:8000/api/estoque/"
+const token = localStorage.getItem("access_token")
+
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${token}`
+}
 
 export async function getProdutos() {
-    const response = await fetch(`${API_URL}produtos/`)
+    const response = await fetch(`${API_URL}produtos/`, {headers})
 
     if (!response.ok) {
         throw new Error("Erro ao buscar Produtos")
@@ -13,9 +19,7 @@ export async function getProdutos() {
 export async function submitProdutos(dados) {
     const response = await fetch(`${API_URL}produtos/`, {
         method: "POST",
-            headers: {
-            "Content-Type": "application/json"
-        },
+        headers,
         body: JSON.stringify(dados)
     })
 
@@ -30,9 +34,7 @@ export async function submitProdutos(dados) {
 export async function editProdutos(dados) {
     const response = await fetch(`${API_URL}produtos/${dados.id}/`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers,
         body: JSON.stringify(dados)
     })
 
@@ -47,6 +49,7 @@ export async function editProdutos(dados) {
 export async function deleteProdutos (id) {
     const response = await fetch(`${API_URL}produtos/${id}/`, {
         method: "DELETE",
+        headers,
     })
 
     if(!response.ok) {

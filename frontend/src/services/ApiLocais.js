@@ -1,7 +1,13 @@
 const API_URL = "http://localhost:8000/api/estoque/"
+const token = localStorage.getItem("access_token")
+
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${token}`
+}
 
 export async function getLocais() {
-    const response = await fetch(`${API_URL}localestocagens/`)
+    const response = await fetch(`${API_URL}localestocagens/`, {headers})
 
     if (!response.ok) {
         throw new Error("Erro ao buscar localestocagens")
@@ -13,9 +19,7 @@ export async function getLocais() {
 export async function submitLocais(dados) {
     const response = await fetch(`${API_URL}localestocagens/`, {
         method: "POST",
-            headers: {
-            "Content-Type": "application/json"
-        },
+        headers,
         body: JSON.stringify(dados)
     })
 
@@ -30,9 +34,7 @@ export async function submitLocais(dados) {
 export async function editLocais(dados) {
     const response = await fetch(`${API_URL}localestocagens/${dados.id}/`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers,
         body: JSON.stringify(dados)
     })
 
@@ -47,6 +49,7 @@ export async function editLocais(dados) {
 export async function deleteLocais (id) {
     const response = await fetch(`${API_URL}localestocagens/${id}/`, {
         method: "DELETE",
+        headers
     })
 
     if(!response.ok) {

@@ -1,4 +1,10 @@
 const API_URL = "http://localhost:8000/api"
+const token = localStorage.getItem("access_token")
+
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${token}`
+}
 
 export const login = async (email, senha) => {
     const response = await fetch(`${API_URL}/usuarios/login/`, {
@@ -17,7 +23,7 @@ export const login = async (email, senha) => {
 }
 
 export const cadastrarUsuario = async (dados) => {
-    const response = await fetch(`${API_URL}/usuario/cadastro/`, {
+    const response = await fetch(`${API_URL}/usuarios/cadastro/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -35,13 +41,9 @@ export const cadastrarUsuario = async (dados) => {
 
 //pega rota
 export const getPerfil = async () => {
-  const token = localStorage.getItem("access_token");
-
   const response = await fetch(`${API_URL}/usuarios/me/`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers,
   });
 
   if (!response.ok) {
@@ -50,3 +52,30 @@ export const getPerfil = async () => {
 
   return await response.json();
 };
+
+//CRUD
+
+export const getUsuarios = async () => {
+  const response = await fetch(`${API_URL}/usuarios/usuarios/`, {headers})
+  if (!response.ok) throw new Error("Erro ao buscar usuários")
+  return await response.json()
+}
+
+export const editUsuarios = async (id, dados) => {
+  const response = await fetch(`${API_URL}/usuarios/usuarios/${id}/`, {
+    method: "PUT", 
+    headers,
+    body: JSON.stringify(dados)
+  })
+  if (!response.ok) throw new Error("Erro ao editar usuário")
+  return await response.json()
+}
+
+export const deleteUsuarios = async (id) => {
+  const response = await fetch(`${API_URL}/usuarios/usuarios/${id}/`, {
+    method: "DELETE",
+    headers
+  })
+  if (!response.ok) throw new Error("Erro ao deletar usuário")
+  return true;
+}
